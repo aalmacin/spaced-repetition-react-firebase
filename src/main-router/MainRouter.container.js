@@ -4,8 +4,9 @@ import Nav from '../nav/Nav.container';
 import { Route, Switch } from 'react-router';
 import Home from '../home/Home.container';
 import Topics from '../topics/Topics.container';
+import { connect } from 'react-redux';
 
-export default class Main extends Component {
+class MainRouter extends Component {
   render() {
     return (
       <BrowserRouter>
@@ -20,3 +21,16 @@ export default class Main extends Component {
     );
   }
 }
+
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = () => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MainRouter);

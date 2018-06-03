@@ -1,11 +1,12 @@
-import React, {Component} from 'react'
-import HomeComponent from "./home.component";
+import React, { Component } from 'react';
+import WelcomeMessage from './welcomeMessage';
 
 export default class Home extends Component {
-
-    render() {
-        return (
-            <HomeComponent />
-        );
-    }
+  render() {
+    return (
+      <div>
+        <WelcomeMessage />
+      </div>
+    );
+  }
 }

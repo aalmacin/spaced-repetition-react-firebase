@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import Main from '../main/Main.container';
+import MainRouter from '../main-router/MainRouter.container';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 
 class App extends Component {
   render() {
-    return <Main />;
+    return (
+      <Provider store={store}>
+        <MainRouter />
+      </Provider>
+    );
   }
 }
 
