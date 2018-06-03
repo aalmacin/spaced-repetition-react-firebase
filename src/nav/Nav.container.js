@@ -1,11 +1,17 @@
-import React, {Component} from 'react'
-import NavComponent from "./nav.component";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Nav extends Component {
-
-    render() {
-        return (
-            <NavComponent></NavComponent>
-        );
-    }
+  render() {
+    return (
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/topics">Topics</Link>
+        </li>
+      </ul>
+    );
+  }
 }
