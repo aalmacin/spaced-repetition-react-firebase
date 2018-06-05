@@ -1,8 +1,9 @@
-import { LOAD_TOPICS } from './topics.constants';
+import { ADD_TOPIC, LOAD_TOPICS } from './topics.constants';
 
 const topicsReducer = (
   state = {
-    all: []
+    all: [],
+    events: []
   },
   action
 ) => {
@@ -11,6 +12,11 @@ const topicsReducer = (
       return {
         ...state,
         all: action.topics
+      };
+    case ADD_TOPIC:
+      return {
+        ...state,
+        events: [...state.events, { event: 'Added new topic' }]
       };
     default:
       return state;
