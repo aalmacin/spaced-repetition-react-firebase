@@ -12,5 +12,6 @@ export const loadTopics = () => dispatch => {
 export const addTopic = ({ name }) => dispatch => {
   topicsService.saveTopic({ name }).then(() => {
     dispatch({ type: ADD_TOPIC });
+    dispatch(loadTopics());
   });
 };
