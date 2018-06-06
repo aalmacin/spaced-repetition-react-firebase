@@ -8,7 +8,7 @@ const TopicList = props => {
   const topicList = topics.map(topic => {
     return (
       <li className="list-group-item" key={topic.id}>
-        <Topic topicName={topic.name} />
+        <Topic topicName={topic.name} topicId={topic.id} />
       </li>
     );
   });

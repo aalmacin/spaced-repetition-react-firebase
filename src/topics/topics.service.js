@@ -25,11 +25,11 @@ export default class TopicsService {
       });
     });
 
-  saveTopic = ({ name }) =>
+  saveTopic = ({ topicId, name }) =>
     new Promise((resolve, rejected) => {
-      db.ref()
-        .child('topics')
-        .push(
+      const topicsRef = db.ref().child('topics');
+      if (isNil(topicId))
+        topicsRef.push(
           {
             name
           },
@@ -38,5 +38,16 @@ export default class TopicsService {
             else resolve();
           }
         );
+      else {
+        topicsRef.child(topicId).set(
+          {
+            name
+          },
+          function(error) {
+            if (error) rejected();
+            else resolve();
+          }
+        );
+      }
     });
 }

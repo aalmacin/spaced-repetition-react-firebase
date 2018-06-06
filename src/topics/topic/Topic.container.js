@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import EditTopicForm from '../EditTopicForm.container';
 
 class Topic extends Component {
   render() {
-    const { topicName } = this.props;
-    return <span>{topicName}</span>;
+    const { topicName, topicId } = this.props;
+    return (
+      <span>
+        {topicName}
+        <EditTopicForm name={topicName} topicId={topicId} />
+      </span>
+    );
   }
 }
 

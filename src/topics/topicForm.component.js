@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import { isEmpty } from 'ramda';
 
 export default class TopicForm extends Component {
   state = {
     name: ''
   };
+
+  componentWillMount() {
+    const { name } = this.props;
+    if (!isEmpty(name))
+      this.setState({
+        ...this.state,
+        name
+      });
+  }
 
   changeHandler = e => {
     this.setState({
@@ -15,16 +25,18 @@ export default class TopicForm extends Component {
   submitHandler = e => {
     e.preventDefault();
 
-    const { submitHandler } = this.props;
+    const { submitHandler, clearAfterSave } = this.props;
     const { name } = this.state;
     submitHandler({
       name
     });
 
-    this.setState({
-      ...this.state,
-      name: ''
-    });
+    if (clearAfterSave) {
+      this.setState({
+        ...this.state,
+        name: ''
+      });
+    }
   };
 
   render() {
@@ -36,7 +48,7 @@ export default class TopicForm extends Component {
             <input
               className="form-control"
               onChange={this.changeHandler.bind(this)}
-              value={this.state.name}
+              defaultValue={this.state.name}
               type="text"
               id="topicName"
             />
