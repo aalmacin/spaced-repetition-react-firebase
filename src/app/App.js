@@ -7,6 +7,7 @@ import store from '../redux/store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'font-awesome/css/font-awesome.min.css';
 
 class App extends Component {
   render() {

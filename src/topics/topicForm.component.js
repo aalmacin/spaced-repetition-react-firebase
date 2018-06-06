@@ -30,16 +30,15 @@ export default class TopicForm extends Component {
   render() {
     return (
       <div className="container">
-        <h2>New Topic</h2>
         <form onSubmit={this.submitHandler.bind(this)}>
           <div className="form-group">
-            <label htmlFor="newTopicName">Name</label>
+            <label htmlFor="topicName">Name</label>
             <input
               className="form-control"
               onChange={this.changeHandler.bind(this)}
               value={this.state.name}
               type="text"
-              id="newTopicName"
+              id="topicName"
             />
           </div>
           <div className="form-group">
@@ -48,6 +47,7 @@ export default class TopicForm extends Component {
             </button>
           </div>
         </form>
+        <hr />
       </div>
     );
   }

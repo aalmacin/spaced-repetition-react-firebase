@@ -5,16 +5,50 @@ import { addTopic, loadTopics } from './topics.actions';
 import TopicForm from './topicForm.component';
 
 class Topics extends Component {
+  state = {
+    showNewTopicForm: false
+  };
+
   componentDidMount() {
     const { loadAll } = this.props;
     loadAll();
   }
 
+  showForm = e => {
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      showNewTopicForm: true
+    });
+  };
+
+  hideForm = e => {
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+      showNewTopicForm: false
+    });
+  };
+
   render() {
     const { addTopic, topics } = this.props;
+    const { showNewTopicForm } = this.state;
     return (
       <div>
-        <TopicForm submitHandler={addTopic} />
+        <h3>Topics</h3>
+        <div className="container text-right">
+          {!showNewTopicForm && (
+            <a onClick={this.showForm.bind(this)}>
+              <span className="fa fa-plus" />
+            </a>
+          )}
+          {showNewTopicForm && (
+            <a onClick={this.hideForm.bind(this)}>
+              <span className="fa fa-times" />
+            </a>
+          )}
+        </div>
+        {showNewTopicForm && <TopicForm submitHandler={addTopic} />}
         <TopicList topics={topics} />
       </div>
     );
