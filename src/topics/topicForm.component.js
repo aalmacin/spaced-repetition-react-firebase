@@ -29,15 +29,26 @@ export default class TopicForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.submitHandler.bind(this)}>
-        <p>New Topic</p>
-        <input
-          onChange={this.changeHandler.bind(this)}
-          value={this.state.name}
-          type="text"
-        />
-        <button type="submit">Save</button>
-      </form>
+      <div className="container">
+        <h2>New Topic</h2>
+        <form onSubmit={this.submitHandler.bind(this)}>
+          <div className="form-group">
+            <label htmlFor="newTopicName">Name</label>
+            <input
+              className="form-control"
+              onChange={this.changeHandler.bind(this)}
+              value={this.state.name}
+              type="text"
+              id="newTopicName"
+            />
+          </div>
+          <div className="form-group">
+            <button type="submit" className="form-control btn btn-primary">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
