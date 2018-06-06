@@ -29,7 +29,7 @@ export default class TopicForm extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container text-left">
         <form onSubmit={this.submitHandler.bind(this)}>
           <div className="form-group">
             <label htmlFor="topicName">Name</label>
