@@ -10,7 +10,7 @@ class CreateTopicForm extends Component {
     return (
       <div className="container text-right">
         <ButtonToggle showIcon="fa fa-plus" hideIcon="fa fa-times">
-          <TopicForm clearAfterSave={true} submitHandler={addTopic} />
+          <TopicForm name="" clearAfterSave={true} submitHandler={addTopic} />
         </ButtonToggle>
       </div>
     );

@@ -27,16 +27,15 @@ export default class TopicForm extends Component {
 
     const { submitHandler, clearAfterSave } = this.props;
     const { name } = this.state;
-    submitHandler({
-      name
-    });
-
     if (clearAfterSave) {
       this.setState({
         ...this.state,
         name: ''
       });
     }
+    submitHandler({
+      name
+    });
   };
 
   render() {
@@ -48,7 +47,7 @@ export default class TopicForm extends Component {
             <input
               className="form-control"
               onChange={this.changeHandler.bind(this)}
-              defaultValue={this.state.name}
+              value={this.state.name}
               type="text"
               id="topicName"
             />
