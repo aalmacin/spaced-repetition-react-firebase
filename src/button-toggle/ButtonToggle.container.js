@@ -19,12 +19,12 @@ export default class ButtonToggle extends Component {
     const { children, showIcon, hideIcon } = this.props;
     const { show } = this.state;
     return (
-      <div>
+      <span>
         <a onClick={this.toggle.bind(this)}>
           <span className={show ? hideIcon : showIcon} />
         </a>
         {show && children}
-      </div>
+      </span>
     );
   }
 }
