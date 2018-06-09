@@ -43,7 +43,7 @@ class EditTopicForm extends Component {
           <div className="form-row">
             <div className="col-auto form-group">
               <input
-                className="form-control"
+                className="form-control form-control-sm"
                 onChange={this.changeHandler.bind(this)}
                 value={this.state.name}
                 type="text"
@@ -51,7 +51,10 @@ class EditTopicForm extends Component {
               />
             </div>
             <div className="col-auto form-group">
-              <button type="submit" className="form-control btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-sm form-control-sm form-control btn btn-primary"
+              >
                 Save
               </button>
             </div>
