@@ -14,10 +14,11 @@ export const loadTopics = () => dispatch => {
   });
 };
 
-export const selectTopic = ({ selectedTopic }) => dispatch => {
+export const selectTopic = ({ selectedTopic, selectedTopicId }) => dispatch => {
   return dispatch({
     type: SELECT_TOPIC,
-    selectedTopic
+    selectedTopic,
+    selectedTopicId
   });
 };
 

@@ -24,8 +24,8 @@ class Topic extends Component {
   };
 
   clickTopic = () => {
-    const { dispatchSelectTopic, topicName } = this.props;
-    dispatchSelectTopic({ topicName });
+    const { dispatchSelectTopic, topicName, topicId } = this.props;
+    dispatchSelectTopic({ topicName, topicId });
   };
 
   render() {
@@ -67,8 +67,10 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    dispatchSelectTopic: ({ topicName }) =>
-      dispatch(selectTopic({ selectedTopic: topicName }))
+    dispatchSelectTopic: ({ topicName, topicId }) =>
+      dispatch(
+        selectTopic({ selectedTopic: topicName, selectedTopicId: topicId })
+      )
   };
 };
 

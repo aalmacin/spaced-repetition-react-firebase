@@ -9,7 +9,8 @@ const topicsReducer = (
   state = {
     all: [],
     events: [],
-    selectedTopic: null
+    selectedTopic: null,
+    selectedTopicId: null
   },
   action
 ) => {
@@ -22,7 +23,8 @@ const topicsReducer = (
     case SELECT_TOPIC:
       return {
         ...state,
-        selectedTopic: action.selectedTopic
+        selectedTopic: action.selectedTopic,
+        selectedTopicId: action.selectedTopicId
       };
     case ADD_TOPIC:
       return {
