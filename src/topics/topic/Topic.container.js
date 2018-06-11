@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EditTopicForm from '../EditTopicForm.container';
-import ButtonToggle from '../../button-toggle/ButtonToggle.container';
+import { selectTopic } from '../topics.actions';
+import { Link } from 'react-router-dom';
 
 class Topic extends Component {
   state = {
@@ -22,6 +23,11 @@ class Topic extends Component {
     });
   };
 
+  clickTopic = () => {
+    const { dispatchSelectTopic, topicName } = this.props;
+    dispatchSelectTopic({ topicName });
+  };
+
   render() {
     const { topicName, topicId } = this.props;
     const { edit } = this.state;
@@ -29,7 +35,13 @@ class Topic extends Component {
       <span className="container">
         <span className="row">
           <span className="col-10">
-            {!edit && topicName}
+            {!edit && (
+              <div className="container">
+                <Link to="/topics/show" onClick={this.clickTopic.bind(this)}>
+                  {topicName}
+                </Link>
+              </div>
+            )}
             {edit && (
               <EditTopicForm
                 onSubmit={this.onUpdate}
@@ -53,8 +65,11 @@ const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = () => {
-  return {};
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchSelectTopic: ({ topicName }) =>
+      dispatch(selectTopic({ selectedTopic: topicName }))
+  };
 };
 
 export default connect(
