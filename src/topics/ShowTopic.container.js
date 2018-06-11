@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { isNil } from 'ramda';
+import { filter, head, isEmpty, isNil } from 'ramda';
 import EditTopicForm from '../topics/EditTopicForm.container';
+import { at } from 'lodash';
+import { loadTopics } from './topics.actions';
 
 class ShowTopic extends Component {
   state = {
     edit: false
   };
+
+  componentWillMount() {
+    const { all, loadAll } = this.props;
+
+    if (isEmpty(all)) loadAll();
+  }
 
   toggleEdit = () => {
     this.setState({
@@ -24,18 +32,18 @@ class ShowTopic extends Component {
   };
 
   render() {
-    const { selectedTopic, selectedTopicId } = this.props;
+    const { topic } = this.props;
     const { edit } = this.state;
     return (
       <div>
-        {!isNil(selectedTopic) ? (
+        {!isNil(topic) ? (
           <div>
             {edit ? (
               <div>
                 <EditTopicForm
                   onSubmit={this.onUpdate}
-                  name={selectedTopic}
-                  topicId={selectedTopicId}
+                  name={topic.name}
+                  topicId={topic.id}
                 />
                 <span className="small">
                   <a onClick={this.toggleEdit}>
@@ -46,7 +54,7 @@ class ShowTopic extends Component {
               </div>
             ) : (
               <div>
-                <p>{selectedTopic}</p>
+                <p>{topic.name}</p>
                 <span className="small">
                   <a onClick={this.toggleEdit}>
                     <span className="fa fa-pencil" />
@@ -67,16 +75,22 @@ class ShowTopic extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { selectedTopic, selectedTopicId } = state.topics;
+const mapStateToProps = (state, props) => {
+  const { match } = props;
+  const { all } = state.topics;
+  const topicId = head(at(match, 'params.topicId'));
+
+  const topic = head(filter(topic => topic.id === topicId, all));
   return {
-    selectedTopic,
-    selectedTopicId
+    all,
+    topic
   };
 };
 
-const mapDispatchToProps = () => {
-  return {};
+const mapDispatchToProps = dispatch => {
+  return {
+    loadAll: () => dispatch(loadTopics())
+  };
 };
 
 export default connect(

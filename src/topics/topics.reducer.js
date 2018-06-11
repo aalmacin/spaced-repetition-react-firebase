@@ -1,16 +1,9 @@
-import {
-  SELECT_TOPIC,
-  ADD_TOPIC,
-  LOAD_TOPICS,
-  UPDATE_TOPIC
-} from './topics.constants';
+import { ADD_TOPIC, LOAD_TOPICS, UPDATE_TOPIC } from './topics.constants';
 
 const topicsReducer = (
   state = {
     all: [],
-    events: [],
-    selectedTopic: null,
-    selectedTopicId: null
+    events: []
   },
   action
 ) => {
@@ -19,12 +12,6 @@ const topicsReducer = (
       return {
         ...state,
         all: action.topics
-      };
-    case SELECT_TOPIC:
-      return {
-        ...state,
-        selectedTopic: action.selectedTopic,
-        selectedTopicId: action.selectedTopicId
       };
     case ADD_TOPIC:
       return {

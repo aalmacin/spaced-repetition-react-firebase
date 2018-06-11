@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EditTopicForm from '../EditTopicForm.container';
-import { selectTopic } from '../topics.actions';
 import { Link } from 'react-router-dom';
 
 class Topic extends Component {
@@ -23,11 +22,6 @@ class Topic extends Component {
     });
   };
 
-  clickTopic = () => {
-    const { dispatchSelectTopic, topicName, topicId } = this.props;
-    dispatchSelectTopic({ topicName, topicId });
-  };
-
   render() {
     const { topicName, topicId } = this.props;
     const { edit } = this.state;
@@ -37,9 +31,7 @@ class Topic extends Component {
           <span className="col-10">
             {!edit && (
               <div className="container">
-                <Link to="/topics/show" onClick={this.clickTopic.bind(this)}>
-                  {topicName}
-                </Link>
+                <Link to={`/topics/${topicId}/show`}>{topicName}</Link>
               </div>
             )}
             {edit && (
@@ -65,13 +57,8 @@ const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    dispatchSelectTopic: ({ topicName, topicId }) =>
-      dispatch(
-        selectTopic({ selectedTopic: topicName, selectedTopicId: topicId })
-      )
-  };
+const mapDispatchToProps = () => {
+  return {};
 };
 
 export default connect(

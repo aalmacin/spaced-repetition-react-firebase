@@ -1,9 +1,4 @@
-import {
-  LOAD_TOPICS,
-  ADD_TOPIC,
-  UPDATE_TOPIC,
-  SELECT_TOPIC
-} from './topics.constants';
+import { LOAD_TOPICS, ADD_TOPIC, UPDATE_TOPIC } from './topics.constants';
 import TopicsService from './topics.service';
 
 const topicsService = new TopicsService();
@@ -11,14 +6,6 @@ const topicsService = new TopicsService();
 export const loadTopics = () => dispatch => {
   topicsService.getTopics().then(response => {
     dispatch({ type: LOAD_TOPICS, topics: response.topics });
-  });
-};
-
-export const selectTopic = ({ selectedTopic, selectedTopicId }) => dispatch => {
-  return dispatch({
-    type: SELECT_TOPIC,
-    selectedTopic,
-    selectedTopicId
   });
 };
 
