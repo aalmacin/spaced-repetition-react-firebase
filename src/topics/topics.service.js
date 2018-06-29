@@ -1,7 +1,7 @@
 import { db } from '../firebase/firebase';
 import { isNil, keys } from 'ramda';
 
-export default class TopicsService {
+export default class TopicService {
   getTopics = () =>
     new Promise((resolve, rejected) => {
       db.ref('/topics').on('value', snapshot => {

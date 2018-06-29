@@ -9,14 +9,21 @@ import ShowTopic from '../topics/ShowTopic.container';
 
 class MainRouter extends Component {
   render() {
+    const { topicService } = this.props;
     return (
       <BrowserRouter>
         <div>
           <Nav />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/topics/:topicId/show" component={ShowTopic} />
-            <Route path="/topics" component={Topics} />
+            <Route exact path="/" render={() => <Home />} />
+            <Route
+              path="/topics/:topicId/show"
+              render={() => <ShowTopic topicService={topicService} />}
+            />
+            <Route
+              path="/topics"
+              component={() => <Topics topicService={topicService} />}
+            />
           </Switch>
         </div>
       </BrowserRouter>

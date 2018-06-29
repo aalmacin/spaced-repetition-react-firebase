@@ -21,10 +21,11 @@ const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, props) => {
+  const { topicService } = props;
   return {
     addTopic: ({ name }) => {
-      dispatch(addTopic({ name }));
+      dispatch(addTopic({ topicService, name }));
     }
   };
 };

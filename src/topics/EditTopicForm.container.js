@@ -69,10 +69,11 @@ const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, props) => {
+  const { topicService } = props;
   return {
-    editTopic: ({ topicId, name }) => {
-      dispatch(editTopic({ topicId, name }));
+    editTopic: ({ topicService, topicId, name }) => {
+      dispatch(editTopic({ topicService, topicId, name }));
     }
   };
 };

@@ -8,12 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'font-awesome/css/font-awesome.min.css';
+import TopicService from '../topics/topics.service';
 
 class App extends Component {
   render() {
+    const topicService = new TopicService();
     return (
       <Provider store={store}>
-        <MainRouter />
+        <MainRouter topicService={topicService} />
       </Provider>
     );
   }

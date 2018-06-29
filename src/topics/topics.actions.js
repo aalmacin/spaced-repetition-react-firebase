@@ -1,24 +1,21 @@
 import { LOAD_TOPICS, ADD_TOPIC, UPDATE_TOPIC } from './topics.constants';
-import TopicsService from './topics.service';
 
-const topicsService = new TopicsService();
-
-export const loadTopics = () => dispatch => {
-  topicsService.getTopics().then(response => {
+export const loadTopics = ({ topicService }) => dispatch => {
+  topicService.getTopics().then(response => {
     dispatch({ type: LOAD_TOPICS, topics: response.topics });
   });
 };
 
-export const addTopic = ({ name }) => dispatch => {
-  topicsService.saveTopic({ name }).then(() => {
+export const addTopic = ({ topicService, name }) => dispatch => {
+  topicService.saveTopic({ name }).then(() => {
     dispatch({ type: ADD_TOPIC });
-    dispatch(loadTopics());
+    dispatch(loadTopics({ topicService }));
   });
 };
 
-export const editTopic = ({ topicId, name }) => dispatch => {
-  topicsService.saveTopic({ topicId, name }).then(() => {
+export const editTopic = ({ topicService, topicId, name }) => dispatch => {
+  topicService.saveTopic({ topicId, name }).then(() => {
     dispatch({ type: UPDATE_TOPIC });
-    dispatch(loadTopics());
+    dispatch(loadTopics({ topicService }));
   });
 };

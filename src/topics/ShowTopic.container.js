@@ -87,9 +87,10 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, props) => {
+  const { topicService } = props;
   return {
-    loadAll: () => dispatch(loadTopics())
+    loadAll: () => dispatch(loadTopics({ topicService }))
   };
 };
 
