@@ -11,7 +11,7 @@ class ShowTopic extends Component {
     edit: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const { all, loadAll } = this.props;
 
     if (isEmpty(all)) loadAll();

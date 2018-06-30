@@ -18,8 +18,8 @@ class EditTopicForm extends Component {
   }
 
   update = ({ name }) => {
-    const { editTopic, topicId, onSubmit } = this.props;
-    editTopic({ topicId, name });
+    const { topicService, editTopic, topicId, onSubmit } = this.props;
+    editTopic({ topicService, topicId, name });
     onSubmit();
   };
 
@@ -65,12 +65,14 @@ class EditTopicForm extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = state => {
+  const { topicService } = state;
+  return {
+    topicService
+  };
 };
 
-const mapDispatchToProps = (dispatch, props) => {
-  const { topicService } = props;
+const mapDispatchToProps = dispatch => {
   return {
     editTopic: ({ topicService, topicId, name }) => {
       dispatch(editTopic({ topicService, topicId, name }));

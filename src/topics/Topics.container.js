@@ -3,6 +3,7 @@ import TopicList from './topicList.component';
 import { connect } from 'react-redux';
 import { loadTopics } from './topics.actions';
 import CreateTopicForm from './CreateTopicForm.container';
+import Loader from 'react-loader-spinner';
 
 class Topics extends Component {
   componentDidMount() {
@@ -11,14 +12,18 @@ class Topics extends Component {
   }
 
   render() {
-    const { topics } = this.props;
+    const { topics, loadedTopics } = this.props;
     return (
       <div className="container">
         <h3>Topics</h3>
 
         <CreateTopicForm />
 
-        <TopicList topics={topics} />
+        {loadedTopics ? (
+          <TopicList topics={topics} />
+        ) : (
+          <Loader type="Oval" color="#000" />
+        )}
       </div>
     );
   }
@@ -26,9 +31,10 @@ class Topics extends Component {
 
 const mapStateToProps = state => {
   const {
-    topics: { all }
+    topics: { all, loadedTopics }
   } = state;
   return {
+    loadedTopics,
     topics: all
   };
 };

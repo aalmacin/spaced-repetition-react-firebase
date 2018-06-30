@@ -1,6 +1,12 @@
-import { LOAD_TOPICS, ADD_TOPIC, UPDATE_TOPIC } from './topics.constants';
+import {
+  LOAD_TOPICS,
+  ADD_TOPIC,
+  UPDATE_TOPIC,
+  LOADING_TOPICS
+} from './topics.constants';
 
 export const loadTopics = ({ topicService }) => dispatch => {
+  dispatch({ type: LOADING_TOPICS });
   topicService.getTopics().then(response => {
     dispatch({ type: LOAD_TOPICS, topics: response.topics });
   });
