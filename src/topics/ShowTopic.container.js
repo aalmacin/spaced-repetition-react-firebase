@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { filter, head, isEmpty, isNil } from 'ramda';
+import * as R from 'ramda';
+import _ from 'lodash';
 import EditTopicForm from '../topics/EditTopicForm.container';
-import { at } from 'lodash';
 import { loadTopics } from './topics.actions';
 
 class ShowTopic extends Component {
@@ -12,9 +12,9 @@ class ShowTopic extends Component {
   };
 
   componentDidMount() {
-    const { all, loadAll } = this.props;
+    const { loadedTopics, loadAll } = this.props;
 
-    if (isEmpty(all)) loadAll();
+    if (!loadedTopics) loadAll();
   }
 
   toggleEdit = () => {
@@ -36,7 +36,7 @@ class ShowTopic extends Component {
     const { edit } = this.state;
     return (
       <div>
-        {!isNil(topic) ? (
+        {!R.isNil(topic) ? (
           <div>
             {edit ? (
               <div>
@@ -78,9 +78,9 @@ class ShowTopic extends Component {
 const mapStateToProps = (state, props) => {
   const { match } = props;
   const { all } = state.topics;
-  const topicId = head(at(match, 'params.topicId'));
+  const topicId = R.head(_.at(match, 'params.topicId'));
 
-  const topic = head(filter(topic => topic.id === topicId, all));
+  const topic = R.find(r => r.id === topicId)(all);
   return {
     all,
     topic

@@ -14,9 +14,9 @@ class MainRouter extends Component {
         <div>
           <Nav />
           <Switch>
-            <Route exact path="/" render={() => <Home />} />
-            <Route path="/topics/:topicId/show" render={() => <ShowTopic />} />
-            <Route path="/topics" component={() => <Topics />} />
+            <Route exact path="/" render={Home} />
+            <Route path="/topics/:topicId/show" component={ShowTopic} />
+            <Route path="/topics" component={Topics} />
           </Switch>
         </div>
       </BrowserRouter>
