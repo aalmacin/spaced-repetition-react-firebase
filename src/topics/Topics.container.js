@@ -40,10 +40,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = (dispatch, props) => {
-  const { topicService } = props;
   return {
     loadAll: () => {
-      dispatch(loadTopics({ topicService }));
+      dispatch(loadTopics());
     }
   };
 };
