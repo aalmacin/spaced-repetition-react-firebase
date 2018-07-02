@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { editTopic } from './topics.actions';
 import { connect } from 'react-redux';
 import { isEmpty } from 'ramda';
+import Loader from 'react-loader-spinner';
 
 class EditTopicForm extends Component {
   state = {
@@ -37,36 +38,46 @@ class EditTopicForm extends Component {
   };
 
   render() {
+    const { savingTopic } = this.props;
     return (
       <div className="container text-right">
-        <form onSubmit={this.submitHandler.bind(this)}>
-          <div className="form-row">
-            <div className="col-auto form-group">
-              <input
-                className="form-control form-control-sm"
-                onChange={this.changeHandler.bind(this)}
-                value={this.state.name}
-                type="text"
-                id="topicName"
-              />
+        {!savingTopic ? (
+          <form onSubmit={this.submitHandler.bind(this)}>
+            <div className="form-row">
+              <div className="col-auto form-group">
+                <input
+                  className="form-control form-control-sm"
+                  onChange={this.changeHandler.bind(this)}
+                  value={this.state.name}
+                  type="text"
+                  id="topicName"
+                />
+              </div>
+              <div className="col-auto form-group">
+                <button
+                  type="submit"
+                  className="btn btn-sm form-control-sm form-control btn btn-primary"
+                >
+                  Save
+                </button>
+              </div>
             </div>
-            <div className="col-auto form-group">
-              <button
-                type="submit"
-                className="btn btn-sm form-control-sm form-control btn btn-primary"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        ) : (
+          <Loader type="Oval" color="#000" />
+        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = state => {
+  const {
+    topics: { savingTopic }
+  } = state;
+  return {
+    savingTopic
+  };
 };
 
 const mapDispatchToProps = dispatch => {

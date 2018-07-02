@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EditTopicForm from '../EditTopicForm.container';
 import { Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 
 class Topic extends Component {
   state = {
@@ -23,17 +24,20 @@ class Topic extends Component {
   };
 
   render() {
-    const { topicName, topicId } = this.props;
+    const { topicName, topicId, savingTopic } = this.props;
     const { edit } = this.state;
     return (
       <span className="container">
         <span className="row">
           <span className="col-10">
-            {!edit && (
-              <div className="container">
-                <Link to={`/topics/${topicId}/show`}>{topicName}</Link>
-              </div>
-            )}
+            {!edit &&
+              (!savingTopic ? (
+                <div className="container">
+                  <Link to={`/topics/${topicId}/show`}>{topicName}</Link>
+                </div>
+              ) : (
+                <Loader type="Oval" color="#000" />
+              ))}
             {edit && (
               <EditTopicForm
                 onSubmit={this.onUpdate}
@@ -53,8 +57,13 @@ class Topic extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = state => {
+  const {
+    topics: { savingTopic }
+  } = state;
+  return {
+    savingTopic
+  };
 };
 
 const mapDispatchToProps = () => {

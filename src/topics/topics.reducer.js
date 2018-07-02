@@ -2,6 +2,7 @@ import {
   ADD_TOPIC,
   LOAD_TOPICS,
   LOADING_TOPICS,
+  SAVING_TOPIC,
   UPDATE_TOPIC
 } from './topics.constants';
 
@@ -9,7 +10,8 @@ const topicsReducer = (
   state = {
     loadedTopics: false,
     all: [],
-    events: []
+    events: [],
+    savingTopic: false
   },
   action
 ) => {
@@ -28,12 +30,19 @@ const topicsReducer = (
     case ADD_TOPIC:
       return {
         ...state,
+        savingTopic: false,
         events: [...state.events, { event: 'Added new topic' }]
       };
     case UPDATE_TOPIC:
       return {
         ...state,
+        savingTopic: false,
         events: [...state.events, { event: 'Updated topic' }]
+      };
+    case SAVING_TOPIC:
+      return {
+        ...state,
+        savingTopic: true
       };
     default:
       return state;

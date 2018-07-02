@@ -5,6 +5,7 @@ import * as R from 'ramda';
 import _ from 'lodash';
 import EditTopicForm from '../topics/EditTopicForm.container';
 import { loadTopics } from './topics.actions';
+import Loader from 'react-loader-spinner';
 
 class ShowTopic extends Component {
   state = {
@@ -32,42 +33,46 @@ class ShowTopic extends Component {
   };
 
   render() {
-    const { topic } = this.props;
+    const { topic, savingTopic } = this.props;
     const { edit } = this.state;
     return (
       <div>
-        {!R.isNil(topic) ? (
-          <div>
-            {edit ? (
-              <div>
-                <EditTopicForm
-                  onSubmit={this.onUpdate}
-                  name={topic.name}
-                  topicId={topic.id}
-                />
-                <span className="small">
-                  <a onClick={this.toggleEdit}>
-                    <span className="fa fa-times" />
-                    Cancel
-                  </a>
-                </span>
-              </div>
-            ) : (
-              <div>
-                <p>{topic.name}</p>
-                <span className="small">
-                  <a onClick={this.toggleEdit}>
-                    <span className="fa fa-pencil" />
-                    Edit
-                  </a>
-                </span>
-              </div>
-            )}
-          </div>
+        {!savingTopic ? (
+          !R.isNil(topic) ? (
+            <div>
+              {edit ? (
+                <div>
+                  <EditTopicForm
+                    onSubmit={this.onUpdate}
+                    name={topic.name}
+                    topicId={topic.id}
+                  />
+                  <span className="small">
+                    <a onClick={this.toggleEdit}>
+                      <span className="fa fa-times" />
+                      Cancel
+                    </a>
+                  </span>
+                </div>
+              ) : (
+                <div>
+                  <p>{topic.name}</p>
+                  <span className="small">
+                    <a onClick={this.toggleEdit}>
+                      <span className="fa fa-pencil" />
+                      Edit
+                    </a>
+                  </span>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div>
+              <p>No Topic to show</p>
+            </div>
+          )
         ) : (
-          <div>
-            <p>No Topic to show</p>
-          </div>
+          <Loader type="Oval" color="#000" />
         )}
         <Link to="/topics">Back</Link>
       </div>
@@ -77,12 +82,13 @@ class ShowTopic extends Component {
 
 const mapStateToProps = (state, props) => {
   const { match } = props;
-  const { all } = state.topics;
+  const { all, savingTopic } = state.topics;
   const topicId = R.head(_.at(match, 'params.topicId'));
 
   const topic = R.find(r => r.id === topicId)(all);
   return {
     all,
+    savingTopic,
     topic
   };
 };
