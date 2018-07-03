@@ -1,38 +1,65 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { DateRangePicker } from 'react-dates';
-import 'react-dates/initialize';
-
-import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet';
-import aphroditeInterface from 'react-with-styles-interface-aphrodite';
-import DefaultTheme from 'react-dates/lib/theme/DefaultTheme';
-
-ThemedStyleSheet.registerInterface(aphroditeInterface);
-ThemedStyleSheet.registerTheme(DefaultTheme);
+import { saveStudy } from './study.actions';
+import * as R from 'ramda';
+import _ from 'lodash';
 
 class StudyForm extends Component {
   state = {
-    focusedInput: null,
-    startDate: null,
-    endDate: null
+    topicId: null,
+    minutes: null,
+    difficulty: null
+  };
+
+  componentWillMount() {
+    const topicId = R.head(_.at(this.props, 'match.params.topicId'));
+    if (R.isNil(topicId)) throw new Error('Topic Id does not exist');
+    this.setState({
+      ...this.state,
+      topicId
+    });
+  }
+
+  minutesChangeHandler = e =>
+    this.setState({ ...this.state, minutes: e.target.value });
+  difficultyChangeHandler = e =>
+    this.setState({ ...this.state, difficulty: e.target.value });
+
+  submitHandler = e => {
+    e.preventDefault();
+    const { saveNewStudy, topicId, minutes, difficulty } = this.props;
+    saveNewStudy({ topicId, minutes, difficulty });
   };
 
   render() {
+    const { topicId } = this.state;
     return (
       <div>
         <h3>Study</h3>
         <div>
-          <DateRangePicker
-            startDate={this.state.startDate}
-            startDateId="startDate"
-            endDate={this.state.endDate}
-            endDateId="endDate"
-            onDatesChange={({ startDate, endDate }) =>
-              this.setState({ startDate, endDate })
-            }
-            focusedInput={this.state.focusedInput}
-            onFocusChange={focusedInput => this.setState({ focusedInput })}
-          />
+          <form onSubmit={this.submitHandler.bind(this)}>
+            <label>Study minutes</label>
+            <input type="hidden" name="topicId" value={topicId} />
+            <input
+              type="number"
+              onChange={this.minutesChangeHandler.bind(this)}
+              name="minutes"
+              className="form-control"
+            />
+            <label>Difficulty</label>
+            <select
+              onChange={this.difficultyChangeHandler.bind(this)}
+              name="difficulty"
+              className="form-control"
+            >
+              <option value={5}>VERY EASY</option>
+              <option value={4}>EASY</option>
+              <option value={3}>MEDIUM</option>
+              <option value={2}>HARD</option>
+              <option value={1}>VERY HARD</option>
+            </select>
+            <button className="btn btn-primary form-control">Save Study</button>
+          </form>
         </div>
       </div>
     );
@@ -43,8 +70,10 @@ const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = () => {
-  return {};
+const mapDispatchToProps = dispatch => {
+  return {
+    saveNewStudy: data => dispatch(saveStudy(data))
+  };
 };
 
 export default connect(
