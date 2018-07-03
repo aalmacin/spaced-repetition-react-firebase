@@ -50,4 +50,18 @@ export default class TopicService {
         );
       }
     });
+
+  saveStudy = ({ topicId, minutes, difficulty }) =>
+    new Promise((resolve, rejected) => {
+      if (isNil(topicId)) throw new Error('Topic ID must be passed');
+      const topicRef = db
+        .ref()
+        .child('topics')
+        .child(topicId)
+        .child('studies');
+      topicRef.push({ minutes, difficulty }, function(error) {
+        if (error) rejected();
+        else resolve();
+      });
+    });
 }

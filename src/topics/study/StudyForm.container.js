@@ -8,7 +8,7 @@ class StudyForm extends Component {
   state = {
     topicId: null,
     minutes: null,
-    difficulty: null
+    difficulty: 5
   };
 
   componentWillMount() {
@@ -27,7 +27,8 @@ class StudyForm extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    const { saveNewStudy, topicId, minutes, difficulty } = this.props;
+    const { saveNewStudy } = this.props;
+    const { topicId, minutes, difficulty } = this.state;
     saveNewStudy({ topicId, minutes, difficulty });
   };
 
