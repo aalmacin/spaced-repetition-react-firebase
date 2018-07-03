@@ -6,6 +6,7 @@ import Home from '../home/Home.container';
 import Topics from '../topics/Topics.container';
 import { connect } from 'react-redux';
 import ShowTopic from '../topics/ShowTopic.container';
+import StudyForm from '../topics/study/StudyForm.container';
 
 class MainRouter extends Component {
   render() {
@@ -16,6 +17,7 @@ class MainRouter extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/topics/:topicId/show" component={ShowTopic} />
+            <Route path="/topics/:topicId/studies/new" component={StudyForm} />
             <Route path="/topics" component={Topics} />
           </Switch>
         </div>

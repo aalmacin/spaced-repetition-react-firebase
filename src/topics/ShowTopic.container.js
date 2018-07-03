@@ -63,6 +63,13 @@ class ShowTopic extends Component {
                       Edit
                     </a>
                   </span>
+                  <br />
+                  <a
+                    className="btn btn-primary"
+                    href={`/topics/${topic.id}/studies/new`}
+                  >
+                    Start Study
+                  </a>
                 </div>
               )}
             </div>
