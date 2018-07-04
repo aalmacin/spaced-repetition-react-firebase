@@ -7,6 +7,7 @@ import Topics from '../topics/Topics.container';
 import { connect } from 'react-redux';
 import ShowTopic from '../topics/ShowTopic.container';
 import StudyForm from '../topics/study/StudyForm.container';
+import Notifications from '../notifications/Notifications.container';
 
 class MainRouter extends Component {
   render() {
@@ -14,6 +15,7 @@ class MainRouter extends Component {
       <BrowserRouter>
         <div>
           <Nav />
+          <Notifications />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/topics/:topicId/show" component={ShowTopic} />
