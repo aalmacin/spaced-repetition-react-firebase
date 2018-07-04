@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { saveStudy } from './study.actions';
 import * as R from 'ramda';
 import _ from 'lodash';
+import { Loader } from 'react-loader-spinner';
 
 class StudyForm extends Component {
   state = {
     topicId: null,
-    minutes: null,
+    minutes: '',
     difficulty: 5
   };
 
@@ -30,45 +31,62 @@ class StudyForm extends Component {
     const { saveNewStudy } = this.props;
     const { topicId, minutes, difficulty } = this.state;
     saveNewStudy({ topicId, minutes, difficulty });
+    this.setState({
+      ...this.state,
+      minutes: '',
+      difficulty: 5
+    });
   };
 
   render() {
-    const { topicId } = this.state;
+    const { savingStudy, topicId } = this.state;
     return (
       <div>
         <h3>Study</h3>
         <div>
-          <form onSubmit={this.submitHandler.bind(this)}>
-            <label>Study minutes</label>
-            <input type="hidden" name="topicId" value={topicId} />
-            <input
-              type="number"
-              onChange={this.minutesChangeHandler.bind(this)}
-              name="minutes"
-              className="form-control"
-            />
-            <label>Difficulty</label>
-            <select
-              onChange={this.difficultyChangeHandler.bind(this)}
-              name="difficulty"
-              className="form-control"
-            >
-              <option value={5}>VERY EASY</option>
-              <option value={4}>EASY</option>
-              <option value={3}>MEDIUM</option>
-              <option value={2}>HARD</option>
-              <option value={1}>VERY HARD</option>
-            </select>
-            <button className="btn btn-primary form-control">Save Study</button>
-          </form>
+          {!savingStudy ? (
+            <form onSubmit={this.submitHandler.bind(this)}>
+              <label>Study minutes</label>
+              <input type="hidden" name="topicId" value={topicId} />
+              <input
+                type="number"
+                onChange={this.minutesChangeHandler.bind(this)}
+                value={this.state.minutes}
+                name="minutes"
+                className="form-control"
+              />
+              <label>Difficulty</label>
+              <select
+                onChange={this.difficultyChangeHandler.bind(this)}
+                name="difficulty"
+                className="form-control"
+              >
+                <option value={5}>VERY EASY</option>
+                <option value={4}>EASY</option>
+                <option value={3}>MEDIUM</option>
+                <option value={2}>HARD</option>
+                <option value={1}>VERY HARD</option>
+              </select>
+              <button className="btn btn-primary form-control">
+                Save Study
+              </button>
+            </form>
+          ) : (
+            <Loader type="Oval" color="#000" />
+          )}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = state => {
+  const {
+    study: { savingStudy }
+  } = state;
+  return {
+    savingStudy
+  };
 };
 
 const mapDispatchToProps = dispatch => {
