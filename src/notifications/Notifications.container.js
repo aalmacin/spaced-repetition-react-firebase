@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import * as R from 'ramda';
+import DangerNotification from './dangerNotification.component';
+import SuccessNotification from './successNotification.component';
+
+const DANGER = 'DANGER';
+
 class Notifications extends Component {
   render() {
+    const { notifications } = this.props;
     return (
       <div>
-        <div role="alert" className="alert alert-danger alert-dismissible">
-          Hello
-          <button
-            type="button"
-            className="close"
-            data-dismiss="alert"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+        {notifications.map(
+          n =>
+            n.type === DANGER ? (
+              <DangerNotification message={n.message} />
+            ) : (
+              <SuccessNotification message={n.message} />
+            )
+        )}
       </div>
     );
   }
 }
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = state => {
+  const { notifications } = state.notifications;
+  return {
+    notifications
+  };
 };
 
 const mapDispatchToProps = () => {
