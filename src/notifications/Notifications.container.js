@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as R from 'ramda';
 import DangerNotification from './dangerNotification.component';
 import SuccessNotification from './successNotification.component';
 
