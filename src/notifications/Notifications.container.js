@@ -12,11 +12,11 @@ class Notifications extends Component {
     return (
       <div>
         {notifications.map(
-          n =>
+          (n, i) =>
             n.type === DANGER ? (
-              <DangerNotification message={n.message} />
+              <DangerNotification key={i} message={n.message} />
             ) : (
-              <SuccessNotification message={n.message} />
+              <SuccessNotification key={i} message={n.message} />
             )
         )}
       </div>

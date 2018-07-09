@@ -4,6 +4,7 @@ import { saveStudy } from './study.actions';
 import * as R from 'ramda';
 import _ from 'lodash';
 import { Loader } from 'react-loader-spinner';
+import { loadTopics } from '../topics.actions';
 
 class StudyForm extends Component {
   state = {
@@ -19,6 +20,11 @@ class StudyForm extends Component {
       ...this.state,
       topicId
     });
+  }
+
+  componentDidMount() {
+    const { loadAll } = this.props;
+    loadAll();
   }
 
   minutesChangeHandler = e =>
@@ -91,6 +97,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadAll: () => dispatch(loadTopics()),
     saveNewStudy: data => dispatch(saveStudy(data))
   };
 };

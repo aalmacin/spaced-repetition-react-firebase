@@ -64,12 +64,12 @@ class ShowTopic extends Component {
                     </a>
                   </span>
                   <br />
-                  <a
+                  <Link
                     className="btn btn-primary"
-                    href={`/topics/${topic.id}/studies/new`}
+                    to={`/topics/${topic.id}/studies/new`}
                   >
                     Start Study
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
