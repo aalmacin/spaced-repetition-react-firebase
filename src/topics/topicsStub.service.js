@@ -19,8 +19,16 @@ export default class TopicStubService {
       let topic = R.find(r => r.topicId === topicId, window.topics);
       if (R.isNil(topic)) {
         window.topics.topics = R.append(
-          { id: topicId, name, tags: [], studies: [] },
-          window.topics
+          {
+            id: Math.random()
+              .toString(36)
+              .replace(/[^a-z]+/g, '')
+              .substr(0, 5),
+            name,
+            tags: [],
+            studies: []
+          },
+          window.topics.topics
         );
       } else {
         const topicIdx = R.findIndex(
