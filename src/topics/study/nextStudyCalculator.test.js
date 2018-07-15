@@ -103,6 +103,29 @@ describe('Show next study', () => {
 
       expect(actual).toBe(expected);
     });
+
+    test('correct date for box 2', () => {
+      const studies = [
+        { difficult: false, minutes: 25, date: '2018-07-9' },
+        { difficult: true, minutes: 25, date: '2018-07-8' },
+        { difficult: false, minutes: 25, date: '2018-07-7' }
+      ];
+      const expected = '2018-07-12';
+      const actual = getNextStudy(studies);
+
+      expect(actual).toBe(expected);
+    });
+
+    test('correct date for box 1', () => {
+      const studies = [
+        { difficult: true, minutes: 25, date: '2018-07-8' },
+        { difficult: false, minutes: 25, date: '2018-07-7' }
+      ];
+      const expected = '2018-07-08';
+      const actual = getNextStudy(studies);
+
+      expect(actual).toBe(expected);
+    });
   });
 });
 
