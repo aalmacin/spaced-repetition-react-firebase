@@ -50,13 +50,24 @@ const setDate = (box, date) =>
 
 const getNextStudy = R.curry(studies =>
   R.pipe(
-    R.converge(setDate, [
-      determineBox,
-      R.pipe(
-        R.head,
-        R.prop('date')
+    R.assoc('studies', R.__, R.identity),
+    r =>
+      R.assoc(
+        'latest_date',
+        R.pipe(
+          R.head,
+          R.prop('date')
+        )(R.prop('studies', r)),
+        r
+      ),
+    r => R.assoc('box', determineBox(R.prop('studies', r)), r),
+    r =>
+      R.assoc(
+        'next_date',
+        setDate(R.prop('box', r), R.prop('latest_date', r)),
+        r
       )
-    ])
+    // R.tap(console.log)
   )(studies)
 );
 
@@ -67,6 +78,7 @@ describe('Show next study', () => {
         { difficult: false, minutes: 25, date: '2018-07-12' },
         { difficult: false, minutes: 25, date: '2018-07-11' },
         { difficult: false, minutes: 25, date: '2018-07-10' },
+        { difficult: false, minutes: 25, date: '2018-07-10' },
         { difficult: false, minutes: 25, date: '2018-07-9' },
         { difficult: true, minutes: 25, date: '2018-07-8' },
         { difficult: false, minutes: 25, date: '2018-07-7' }
@@ -74,7 +86,7 @@ describe('Show next study', () => {
       const expected = '2018-08-11';
       const actual = getNextStudy(studies);
 
-      expect(actual).toBe(expected);
+      expect(actual.next_date).toBe(expected);
     });
 
     test('correct date for box 4', () => {
@@ -88,7 +100,7 @@ describe('Show next study', () => {
       const expected = '2018-07-25';
       const actual = getNextStudy(studies);
 
-      expect(actual).toBe(expected);
+      expect(actual.next_date).toBe(expected);
     });
 
     test('correct date for box 3', () => {
@@ -101,7 +113,7 @@ describe('Show next study', () => {
       const expected = '2018-07-17';
       const actual = getNextStudy(studies);
 
-      expect(actual).toBe(expected);
+      expect(actual.next_date).toBe(expected);
     });
 
     test('correct date for box 2', () => {
@@ -113,7 +125,7 @@ describe('Show next study', () => {
       const expected = '2018-07-12';
       const actual = getNextStudy(studies);
 
-      expect(actual).toBe(expected);
+      expect(actual.next_date).toBe(expected);
     });
 
     test('correct date for box 1', () => {
@@ -124,7 +136,7 @@ describe('Show next study', () => {
       const expected = '2018-07-08';
       const actual = getNextStudy(studies);
 
-      expect(actual).toBe(expected);
+      expect(actual.next_date).toBe(expected);
     });
   });
 });
