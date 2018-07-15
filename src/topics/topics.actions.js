@@ -5,7 +5,6 @@ import {
   LOADING_TOPICS,
   SAVING_TOPIC
 } from './topics.constants';
-import TopicService from './topics.service';
 import TopicStubService from './topicsStub.service';
 
 const topicService = new TopicStubService();
