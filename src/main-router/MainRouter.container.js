@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import ShowTopic from '../topics/ShowTopic.container';
 import StudyForm from '../topics/study/StudyForm.container';
 import Notifications from '../notifications/Notifications.container';
+import Auth from '../auth/Auth.container';
 
 class MainRouter extends Component {
   render() {
@@ -18,6 +19,7 @@ class MainRouter extends Component {
           <Notifications />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/auth" component={Auth} />
             <Route path="/topics/:topicId/show" component={ShowTopic} />
             <Route path="/topics/:topicId/studies/new" component={StudyForm} />
             <Route path="/topics" component={Topics} />

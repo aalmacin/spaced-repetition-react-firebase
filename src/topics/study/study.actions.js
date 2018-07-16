@@ -5,12 +5,11 @@ import {
 } from './study.constants';
 import TopicService from '../topics.service';
 import { fireNotification } from '../../notifications/notifications.actions';
-import TopicStubService from '../topicsStub.service';
 import { loadTopics } from '../topics.actions';
 
 export const saveStudy = ({ topicId, minutes, difficulty }) => dispatch => {
   dispatch({ type: SAVING_STUDY });
-  const topicService = new TopicStubService();
+  const topicService = new TopicService();
   topicService
     .saveStudy({ topicId, minutes, difficulty })
     .then(() => {

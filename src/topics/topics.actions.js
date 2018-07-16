@@ -5,9 +5,9 @@ import {
   LOADING_TOPICS,
   SAVING_TOPIC
 } from './topics.constants';
-import TopicStubService from './topicsStub.service';
+import TopicService from './topics.service';
 
-const topicService = new TopicStubService();
+const topicService = new TopicService();
 export const loadTopics = () => dispatch => {
   dispatch({ type: LOADING_TOPICS });
   topicService.getTopics().then(response => {

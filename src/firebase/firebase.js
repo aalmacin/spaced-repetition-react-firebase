@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/auth';
 
 const {
   REACT_APP_FIREBASE_API_KEY,
@@ -19,5 +20,5 @@ const config = {
   messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID
 };
 firebase.initializeApp(config);
-
 export const db = firebase.database();
+export const firebaseAuth = firebase.auth;
