@@ -8,14 +8,17 @@ class Auth extends Component {
   componentDidMount() {
     const uiConfig = {
       signInSuccessUrl: '/',
-      signInFlow: 'popup',
       signInOptions: [
         firebaseAuth.GoogleAuthProvider.PROVIDER_ID,
         firebaseAuth.EmailAuthProvider.PROVIDER_ID
       ]
     };
-    const ui = new firebaseui.auth.AuthUI(firebaseAuth());
-    ui.start('#auth-container', uiConfig);
+    firebaseAuth()
+      .setPersistence(firebaseAuth.Auth.Persistence.LOCAL)
+      .then(() => {
+        const ui = new firebaseui.auth.AuthUI(firebaseAuth());
+        ui.start('#auth-container', uiConfig);
+      });
   }
 
   render() {
@@ -29,6 +32,8 @@ class Auth extends Component {
     );
   }
 }
+
+Auth.propTypes = {};
 
 const mapStateToProps = () => {
   return {};
