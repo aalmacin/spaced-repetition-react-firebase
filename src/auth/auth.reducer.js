@@ -1,8 +1,10 @@
-import { RESET_USER, SET_USER } from './auth.constants';
+import { LOGGED_IN, NOT_LOGGED_IN, SIGN_OUT, SET_USER } from './auth.constants';
 
 export const authReducer = (
   state = {
-    user: null
+    user: null,
+    loggedIn: false,
+    pending: true
   },
   action
 ) => {
@@ -12,10 +14,24 @@ export const authReducer = (
         ...state,
         user: action.user
       };
-    case RESET_USER:
+    case SIGN_OUT:
       return {
         ...state,
-        user: null
+        user: null,
+        pending: true,
+        loggedIn: false
+      };
+    case LOGGED_IN:
+      return {
+        ...state,
+        loggedIn: true,
+        pending: false
+      };
+    case NOT_LOGGED_IN:
+      return {
+        ...state,
+        loggedIn: false,
+        pending: false
       };
     default:
       return state;

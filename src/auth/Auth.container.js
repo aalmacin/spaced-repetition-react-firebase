@@ -35,9 +35,7 @@ class Auth extends Component {
 
 Auth.propTypes = {};
 
-const mapStateToProps = () => {
-  return {};
-};
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = () => {
   return {};
