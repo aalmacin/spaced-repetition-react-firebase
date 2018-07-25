@@ -9,7 +9,7 @@ import { Redirect } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 
 class Auth extends Component {
-  componentDidMount() {
+  componentDidUpdate() {
     const { pending, loggedIn } = this.props;
     if (!pending && !loggedIn) {
       const uiConfig = {
@@ -19,12 +19,8 @@ class Auth extends Component {
           firebaseAuth.EmailAuthProvider.PROVIDER_ID
         ]
       };
-      firebaseAuth()
-        .setPersistence(firebaseAuth.Auth.Persistence.LOCAL)
-        .then(() => {
-          const ui = new firebaseui.auth.AuthUI(firebaseAuth());
-          ui.start('#auth-container', uiConfig);
-        });
+      const ui = new firebaseui.auth.AuthUI(firebaseAuth());
+      ui.start('#auth-container', uiConfig);
     }
   }
 
