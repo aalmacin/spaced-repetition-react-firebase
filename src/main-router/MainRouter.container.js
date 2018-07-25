@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Nav from '../nav/Nav.container';
 import { Route, Switch } from 'react-router';
 import { connect } from 'react-redux';
 import Notifications from '../notifications/Notifications.container';
@@ -12,7 +11,6 @@ class MainRouter extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Nav />
           <Notifications />
           <Switch>
             <Route path="/auth" component={Auth} />
