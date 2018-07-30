@@ -18,7 +18,7 @@ export const authReducer = (
       return {
         ...state,
         user: null,
-        pending: true,
+        pending: false,
         loggedIn: false
       };
     case LOGGED_IN:
