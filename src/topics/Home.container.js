@@ -17,9 +17,11 @@ class Home extends Component {
     } else {
       return (
         <div>
-          {!loggedIn && <SignIn />}
-          {loggedIn && <p>{user.displayName}</p>}
-          {loggedIn && <SignOut />}
+          <div>
+            <div>{loggedIn && <span>{user.displayName}</span>}</div>
+            <div>{loggedIn && <SignOut />}</div>
+            {!loggedIn && <SignIn />}
+          </div>
           <div>
             <Topics />
           </div>
