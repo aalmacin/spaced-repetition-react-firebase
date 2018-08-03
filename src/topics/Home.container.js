@@ -25,102 +25,107 @@ class Home extends Component {
       return <Loader type="Oval" color="#000" />;
     } else {
       return (
-        <div class="d-flex flex-row justify-content-between">
-          <div class="sidebar w-25 flex-grow-1 pt-1">
-            <div class="d-flex flex-row justify-content-around align-items-end">
+        <div className="d-flex flex-row justify-content-between">
+          <div className="sidebar w-25 flex-grow-1 pt-1">
+            <div className="d-flex flex-row justify-content-around align-items-end">
               {loggedIn &&
-                user && <span class="align-self-end">{user.displayName}</span>}
+                user && (
+                  <span className="align-self-end">{user.displayName}</span>
+                )}
               {loggedIn && <SignOut />}
               {!loggedIn && <SignIn />}
             </div>
             <div>
-              <span class="border" />
+              <span className="border" />
             </div>
-            <div class="input-group">
+            <div className="input-group">
               <input
                 type="text"
-                class="form-control no-gutters"
+                className="form-control no-gutters"
                 placeholder="Filter Categories"
               />
-              <div class="input-group-append">
-                <span class="input-group-text">
+              <div className="input-group-append">
+                <span className="input-group-text">
                   <FontAwesomeIcon icon={faSearch} />
                 </span>
               </div>
             </div>
-            <div class="list-group list-group-flush">
-              <a href="#" class="list-group-item list-group-item-action active">
+            <div className="list-group list-group-flush">
+              <a
+                href="#"
+                className="list-group-item list-group-item-action active"
+              >
                 All
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faCode} /> Programming
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faCode} /> Javascript
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faCode} /> Java
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faCode} /> Spring
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faFlask} /> Science
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faFlask} /> Physics
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faFlask} /> Chemistry
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faFlask} /> Biology
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faFlask} /> Evolution
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faMusic} /> Guitar
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faMusic} /> Piano
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faMusic} /> Music Theory
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faCalculator} /> Math
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faBook} /> Philosophy
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faBook} /> Psychology
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faBook} /> Economics
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faBook} /> History
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faBook} /> Politics
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faGamepad} /> Gaming
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faGamepad} /> NBA 2K18
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faGamepad} /> Assassins Creed
               </a>
-              <a href="#" class="list-group-item list-group-item-action">
+              <a href="#" className="list-group-item list-group-item-action">
                 <FontAwesomeIcon icon={faGamepad} /> Assassins Creed: Syndicate
               </a>
             </div>
           </div>
-          <div class="main w-75 flex-grow-1 p-3">
+          <div className="main w-75 flex-grow-1 p-3">
             {loggedIn && <Topics />}
             {!loggedIn && <p>Please log in</p>}
           </div>
