@@ -72,18 +72,6 @@
         <div class="flex-grow-1"></div>
         <form class="flex-grow-1 w-50">
           <input class="form-control" type="text" placeholder="Topic Name" />
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="difficult" />
-            <label class="form-check-label">Difficult?</label>
-          </div>
-          <input type="date" class="p-2 form-control" />
-
-          <div class="d-flex flex-row justify-content-center align-items-center">
-            <label>Minutes</label>
-            <div class="p-1 flex-grow-1">
-              <input type="number" class="form-control" />
-            </div>
-          </div>
 
           <input class="form-control" type="text" placeholder="Categories" />
           <div class="p-1">
@@ -113,56 +101,95 @@
             <h5 class="card-title">Card Title</h5>
             <div class="card-text">
               <b>Study:</b> 2018-12-24
-              <a class="btn btn-primary">Start Study</a>
+              <a class="btn btn-primary p-1" data-toggle="modal" data-target="#detailsmodal1">View Details</a>
+              <div class="modal fade" id="detailsmodal1">
+                <div class="modal-dialog">
+                  <div class="modal-content p-5">
+                    <h5>Card Title</h5>
+                    <b>Next Study:</b> 2018-12-24
+                    <b>Last Study:</b> 2018-12-20
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="studymodal1">
+                <div class="modal-dialog">
+                  <div class="modal-content p-5">
+                    <h5>Card Title</h5>
+                    <form class="flex-grow-1">
+                      <div class="form-check">
+                        <input type="checkbox" class="form-check-input" name="difficult" />
+                        <label class="form-check-label">Difficult?</label>
+                      </div>
+                      <input type="date" class="p-2 form-control" />
+
+                      <div class="d-flex flex-row justify-content-center align-items-center">
+                        <label>Minutes</label>
+                        <div class="p-1 flex-grow-1">
+                          <input type="number" class="form-control" />
+                        </div>
+                      </div>
+                      <button class="form-control btn btn-primary">Save Study</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <a class="btn btn-primary p-1" data-toggle="modal" data-target="#studymodal1">Start Study</a>
             </div>
           </div>
           <div class="card p-3 w-25 green m-1">
             <h5 class="card-title">Card Title</h5>
             <div class="card-text">
               <b>Study:</b> 2018-12-24
-              <a class="btn btn-primary">Start Study</a>
+              <a class="btn btn-primary p-1">View Details</a>
+              <a class="btn btn-primary p-1">Start Study</a>
             </div>
           </div>
           <div class="card p-3 w-25 green m-1">
             <h5 class="card-title">Card Title</h5>
             <div class="card-text">
               <b>Study:</b> 2018-12-24
-              <a class="btn btn-primary">Start Study</a>
+              <a class="btn btn-primary p-1">View Details</a>
+              <a class="btn btn-primary p-1">Start Study</a>
             </div>
           </div>
           <div class="card p-3 w-25 green m-1">
             <h5 class="card-title">Card Title</h5>
             <div class="card-text">
               <b>Study:</b> 2018-12-24
-              <a class="btn btn-primary">Start Study</a>
+              <a class="btn btn-primary p-1">View Details</a>
+              <a class="btn btn-primary p-1">Start Study</a>
             </div>
           </div>
           <div class="card p-3 w-25 green m-1">
             <h5 class="card-title">Card Title</h5>
             <div class="card-text">
               <b>Study:</b> 2018-12-24
-              <a class="btn btn-primary">Start Study</a>
+              <a class="btn btn-primary p-1">View Details</a>
+              <a class="btn btn-primary p-1">Start Study</a>
             </div>
           </div>
           <div class="card p-3 w-25 green m-1">
             <h5 class="card-title">Card Title</h5>
             <div class="card-text">
               <b>Study:</b> 2018-12-24
-              <a class="btn btn-primary">Start Study</a>
+              <a class="btn btn-primary p-1">View Details</a>
+              <a class="btn btn-primary p-1">Start Study</a>
             </div>
           </div>
           <div class="card p-3 w-25 green m-1">
             <h5 class="card-title">Card Title</h5>
             <div class="card-text">
               <b>Study:</b> 2018-12-24
-              <a class="btn btn-primary">Start Study</a>
+              <a class="btn btn-primary p-1">View Details</a>
+              <a class="btn btn-primary p-1">Start Study</a>
             </div>
           </div>
           <div class="card p-3 w-25 green m-1">
             <h5 class="card-title">Card Title</h5>
             <div class="card-text">
               <b>Study:</b> 2018-12-24
-              <a class="btn btn-primary">Start Study</a>
+              <a class="btn btn-primary p-1">View Details</a>
+              <a class="btn btn-primary p-1">Start Study</a>
             </div>
           </div>
       </div>
