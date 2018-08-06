@@ -17,10 +17,27 @@ import {
   faCalculator,
   faMusic
 } from '@fortawesome/free-solid-svg-icons';
+import TopicService from '../topics/topicsStub.service';
 
 class Home extends Component {
+  state = {
+    tags: []
+  };
+
+  componentDidMount() {
+    const topicService = new TopicService();
+    topicService.getTags().then(r => {
+      this.setState({
+        ...this.state,
+        tags: r
+      });
+    });
+  }
+
   render() {
     const { loggedIn, pending, user } = this.props;
+    const { tags } = this.state;
+
     if (pending) {
       return <Loader type="Oval" color="#000" />;
     } else {
@@ -57,72 +74,15 @@ class Home extends Component {
               >
                 All
               </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faCode} /> Programming
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faCode} /> Javascript
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faCode} /> Java
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faCode} /> Spring
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faFlask} /> Science
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faFlask} /> Physics
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faFlask} /> Chemistry
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faFlask} /> Biology
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faFlask} /> Evolution
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faMusic} /> Guitar
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faMusic} /> Piano
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faMusic} /> Music Theory
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faCalculator} /> Math
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faBook} /> Philosophy
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faBook} /> Psychology
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faBook} /> Economics
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faBook} /> History
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faBook} /> Politics
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faGamepad} /> Gaming
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faGamepad} /> NBA 2K18
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faGamepad} /> Assassins Creed
-              </a>
-              <a href="#" className="list-group-item list-group-item-action">
-                <FontAwesomeIcon icon={faGamepad} /> Assassins Creed: Syndicate
-              </a>
+              {tags.map(tag => (
+                <a
+                  href="#"
+                  key={tag.id}
+                  className="list-group-item list-group-item-action"
+                >
+                  <FontAwesomeIcon icon={faFlask} /> {tag.name}
+                </a>
+              ))}
             </div>
           </div>
           <div className="main w-75 flex-grow-1 p-3">
